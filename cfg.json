@@ -1,6 +1,12 @@
 {
   "sites": [
     {
+      "key": "360-JS-DR",
+      "name": "360[JS][DR]",
+      "type": 3,
+      "api": "https://ghproxy.com/https://raw.githubusercontent.com/ShadowDemon1997/CatVodSpiderJS/main/dr.js?rule=dr/360影视.js"
+    },
+    {
       "key": "77-JS",
       "name": "77[JS]",
       "type": 3,

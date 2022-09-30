@@ -6,7 +6,7 @@ import _ from './lib/underscore-esm-min.js';
 import cheerio from './lib/cheerio.min.js';
 import { muban } from './dr/模板.js';
 
-__DR_RULE__
+__RULE__
 
 const MOBILE_UA = 'Mozilla/5.0 (Linux; Android 11; M2007J3SC Build/RKQ1.200826.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/77.0.3865.120 MQQBrowser/6.2 TBS/045714 Mobile Safari/537.36';
 const PC_UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.54 Safari/537.36';
