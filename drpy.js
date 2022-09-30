@@ -1168,7 +1168,7 @@ function DRPY() {//导出函数
 }
 
 // 导出函数对象
-globalThis.drTest = {
+__JS_SPIDER__ = {
     init: init,
     home: home,
     homeVod: homeVod,
