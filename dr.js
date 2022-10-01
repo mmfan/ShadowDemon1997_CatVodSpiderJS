@@ -24,25 +24,16 @@ const $ = cheerio.load('');
 
 function init(ext) {
     // check default val
-    if (!rule.title)
-        rule.title = '';
-    if (!rule.id)
-        rule.id = rule.title;
-    if (!rule.host)
-        rule.host = '';
+    rule.title = rule.title || '';
+    rule.id = rule.id || rule.title;
+    rule.host = rule.host || '';
     rule.host = rule.host.rstrip('/');
-    if (!rule.timeout)
-        rule.timeout = 5000;
-    if (!rule.url)
-        rule.url = '';
-    if (!rule.homeUrl)
-        rule.homeUrl = '/';
-    if (!rule.detailUrl)
-        rule.detailUrl = '';
-    if (!rule.searchUrl)
-        rule.searchUrl = '';
-    if (!rule.headers)
-        rule.headers = {};
+    rule.timeout = rule.timeout || 5000;
+    rule.url = rule.url || '';
+    rule.homeUrl = rule.homeUrl || '/';
+    rule.detailUrl = rule.detailUrl || '';
+    rule.searchUrl = rule.searchUrl || '';
+    rule.headers = rule.headers || {};
     // check replace UA
     let hasUA = false
     for (const k in rule.headers) {
@@ -64,44 +55,31 @@ function init(ext) {
     }
     rule.cate_exclude = (rule.cate_exclude || '') + CATE_EXCLUDE;
     rule.tab_exclude = (rule.tab_exclude || '') + TAB_EXCLUDE;
-    rule.homeUrl = rule.host.isNotEmpty() && rule.homeUrl.isNotEmpty() ? urljoin(rule.host, rule.homeUrl) : (rule.homeUrl.isNotEmpty() ? rule.homeUrl : rule.host)
+    rule.homeUrl = rule.host && rule.homeUrl ? urljoin(rule.host, rule.homeUrl) : (rule.homeUrl ? rule.homeUrl : rule.host)
     if (rule.url.indexOf('[') > -1 && rule.url.indexOf(']') > -1) {
         u1 = rule.url.split('[')[0]
         u2 = rule.url.split('[')[1].split(']')[0]
-        rule.url = rule.host.isNotEmpty() && rule.url.isNotEmpty() ? (urljoin(rule.host, u1) + '[' + urljoin(rule.host, u2) + ']') : rule.url
+        rule.url = rule.host && rule.url ? (urljoin(rule.host, u1) + '[' + urljoin(rule.host, u2) + ']') : rule.url
     } else {
-        rule.url = rule.host.isNotEmpty() && rule.url.isNotEmpty() ? urljoin(rule.host, rule.url) : rule.url
+        rule.url = rule.host && rule.url ? urljoin(rule.host, rule.url) : rule.url
     }
-    rule.detailUrl = rule.host.isNotEmpty() && rule.detailUrl.isNotEmpty() ? urljoin(rule.host, rule.detailUrl) : (rule.detailUrl.isNotEmpty() ? rule.detailUrl : rule.host)
-    rule.searchUrl = rule.host.isNotEmpty() && rule.searchUrl.isNotEmpty() ? urljoin(rule.host, rule.searchUrl) : (rule.searchUrl.isNotEmpty() ? rule.searchUrl : rule.host)
-    if (!rule.class_name)
-        rule.class_name = '';
-    if (!rule.class_url)
-        rule.class_url = '';
-    if (!rule.class_parse)
-        rule.class_parse = '';
-    if (!rule.filter_name)
-        rule.filter_name = '';
-    if (!rule.filter_url)
-        rule.filter_url = '';
-    if (!rule.filter_parse)
-        rule.filter_parse = '';
-    if (!rule.double)
-        rule.double = false;
-    if (!rule.一级)
-        rule.一级 = '';
-    if (!rule.二级)
-        rule.二级 = '';
-    if (!rule.搜索)
-        rule.搜索 = '';
-    if (!rule.推荐)
-        rule.推荐 = '';
-    if (!rule.编码)
-        rule.编码 = 'utf-8';
-    if (!rule.limit)
-        rule.limit = 6;
-    if (!rule.filter)
-        rule.filter = [];
+    rule.detailUrl = rule.host && rule.detailUrl ? urljoin(rule.host, rule.detailUrl) : (rule.detailUrl ? rule.detailUrl : rule.host)
+    rule.searchUrl = rule.host && rule.searchUrl ? urljoin(rule.host, rule.searchUrl) : (rule.searchUrl ? rule.searchUrl : rule.host)
+    rule.class_name = rule.class_name || '';
+    rule.class_url = rule.class_url || '';
+    rule.class_parse = rule.class_parse || '';
+    rule.filter_name = rule.filter_name || '';
+    rule.filter_url = rule.filter_url || '';
+    rule.filter_parse = rule.filter_parse || '';
+    rule.double = rule.double || false;
+    rule.一级 = rule.一级 || '';
+    rule.二级 = rule.二级 || '';
+    rule.搜索 = rule.搜索 || '';
+    rule.推荐 = rule.推荐 || '';
+    rule.编码 = rule.编码 || 'utf-8';
+    rule.encoding = rule.编码;
+    rule.limit = rule.limit || 6;
+    rule.filter = rule.filter || [];
 }
 
 function request(url, headers, timeout) {
@@ -112,8 +90,8 @@ function request(url, headers, timeout) {
     return res;
 }
 
-function pjfh(html, parse, add_url, base_url) {
-    if (!parse || parse.trim().isEmpty())
+function pjfh(html, parse, base_url) {
+    if (!parse || !parse.trim())
         return '';
     if (typeof (html) === 'string')
         html = JSON.parse(html)
@@ -129,17 +107,17 @@ function pjfh(html, parse, add_url, base_url) {
             ret = ret || ''
         if (ret && typeof (ret) !== 'string')
             ret = ret.toString();
-        if (add_url && ret && ret.isNotEmpty())
+        if (base_url && ret && ret)
             ret = urljoin(base_url, ret);
         console.log(ret)
-        if (ret && ret.isNotEmpty())
+        if (ret && ret)
             return ret;
     }
     return '';
 }
 
 function pjfa(html, parse) {
-    if (!parse || parse.trim().isEmpty())
+    if (!parse || !parse.trim())
         return '';
     if (typeof (html) === 'string')
         html = JSON.parse(html)
@@ -154,8 +132,8 @@ function pjfa(html, parse) {
 
 const DOM_CHECK_ATTR = ['url', 'src', 'href', 'data-original', 'data-src'];
 
-function pdfh(html, parse, add_url, base_url) {
-    if (!parse || parse.isEmpty())
+function pdfh(html, parse, base_url) {
+    if (!parse || !parse.trim())
         return ''
     let option = undefined;
     if (parse.indexOf('&&') > -1) {
@@ -184,7 +162,7 @@ function pdfh(html, parse, add_url, base_url) {
             result = $(ret).html();
         else
             result = $(ret).attr(option);
-        if (result && add_url && DOM_CHECK_ATTR.indexOf(option) > -1) {
+        if (result && base_url && DOM_CHECK_ATTR.indexOf(option) > -1) {
             let idx = result.indexOf('http');
             if (idx > -1) {
                 result = result.substring(idx)
@@ -199,8 +177,8 @@ function pdfh(html, parse, add_url, base_url) {
 }
 
 function pdfa(html, parse) {
-    if (!parse || parse.isEmpty())
-        return []
+    if (!parse || !parse.trim())
+        return [];
     if (parse.indexOf('&&') > -1) {
         let sp = parse.split('&&');
         for (const i in sp) {
@@ -225,7 +203,7 @@ function dealJson(html) {
 function home(filter) {
     let classes = [];
     let videos = [];
-    if (rule.class_url.isNotEmpty() && rule.class_name.isNotEmpty()) {
+    if (rule.class_url && rule.class_name) {
         let class_names = rule.class_name.split('&');
         let class_urls = rule.class_url.split('&');
         let cnt = Math.min(class_names.length, class_names.length);
@@ -236,20 +214,20 @@ function home(filter) {
             });
         }
     }
-    if (rule.homeUrl.isNotEmpty() && rule.homeUrl.startsWith('http')) {
+    if (rule.homeUrl && rule.homeUrl.startsWith('http')) {
         let res = request(rule.homeUrl, rule.headers, rule.timeout);
-        if (res.content.isNotEmpty() && rule.class_parse.isNotEmpty()) {
+        if (res.content && rule.class_parse) {
             classes = []
             let p = rule.class_parse.split(';');
             let html = res.content;
             let items = pdfa(html, p[0]);
             for (const item of items) {
-                let title = pdfh(item, p[1], false, '')
+                let title = pdfh(item, p[1])
                 if (rule.cate_exclude.indexOf(title) > -1)
                     continue;
-                let url = pdfh(item, p[2], true, rule.url);
+                let url = pdfh(item, p[2], rule.url);
                 let tag = url;
-                if (p.length > 3 && p[3].trim().isNotEmpty()) {
+                if (p.length > 3 && p[3].trim()) {
                     let regex = new RegExp(String.raw`${p[3]}`);
                     let match = url.match(regex);
                     if (!match)
@@ -262,7 +240,7 @@ function home(filter) {
                 });
             }
         }
-        if (res.content.isNotEmpty()) {
+        if (res.content) {
             videos = getHomeVod(res.content);
         }
     }
@@ -275,12 +253,15 @@ function home(filter) {
 
 function getHomeVod(html) {
     let p = rule.推荐.trim();
-    if (p.isEmpty())
+    if (!p)
         return [];
     let videos = [];
     let is_js = p.startsWith('js:');
     if (is_js) {
-
+        const input = rule.homeUrl;
+        const HOST = rule.host;
+        const oheaders = rule.headers;
+        const fetch_params = { 'headers': rule.headers, 'timeout': rule.timeout, 'encoding': rule.encoding };
     } else {
         p = p.split(';');
         if (!rule.double && p.length < 5) {
@@ -302,17 +283,17 @@ function getHomeVod(html) {
             for (const item of items) {
                 let items2 = _pa(item, p[1]);
                 for (const item2 of items2) {
-                    let title = _ph(item2, p[2], false, '');
+                    let title = _ph(item2, p[2]);
                     let img = '';
                     try {
-                        img = _ph(item2, p[3], true, rule.homeUrl);
+                        img = _ph(item2, p[3], rule.homeUrl);
                     } catch (error) {
 
                     }
-                    let desc = _ph(item2, p[4], false, '');
+                    let desc = _ph(item2, p[4]);
                     let links = [];
                     for (const p5 of p[5].split('+')) {
-                        links.push(rule.detailUrl.isEmpty() ? _ph(item2, p5, true, rule.homeUrl) : _ph(item2, p5, false, ''))
+                        links.push(!rule.detailUrl ? _ph(item2, p5, true, rule.homeUrl) : _ph(item2, p5, false, ''))
                     }
                     let link = links.join('$');
                     videos.push({
@@ -326,17 +307,17 @@ function getHomeVod(html) {
         } else {
             let items = _pa(html, is_json ? p[0].substring(5) : p[0]);
             for (const item of items) {
-                let title = _ph(item, p[1], false, '');
+                let title = _ph(item, p[1]);
                 let img = '';
                 try {
                     img = _ph(item, p[2], true, rule.homeUrl);
                 } catch (error) {
 
                 }
-                let desc = _ph(item, p[3], false, '');
+                let desc = _ph(item, p[3]);
                 let links = [];
                 for (const p4 of p[4].split('+')) {
-                    links.push(rule.detailUrl.isEmpty() ? _ph(item, p4, true, rule.homeUrl) : _ph(item, p4, false, ''))
+                    links.push(!rule.detailUrl ? _ph(item, p4, rule.homeUrl) : _ph(item, p4))
                 }
                 let link = links.join('$');
                 videos.push({
