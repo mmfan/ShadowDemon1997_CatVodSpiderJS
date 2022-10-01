@@ -12,12 +12,13 @@ const key = 'drpy_zbk';
 function init_test() {
     console.log("init_test_start");
     // clearItem(RULE_CK);
-    console.log(JSON.stringify(rule));
+    // console.log(JSON.stringify(rule));
     // console.log(request('https://www.baidu.com',{withHeaders:true}));
     // console.log(request('https://www.baidu.com/favicon.ico',{toBase64:true}));
     // require('http://192.168.10.99:5705/txt/pluto/drT.js');
     // console.log(typeof(drT));
     // console.log(drT.renderText('{{fl.cate}},hi, {{fl}}哈哈.{{fl}}',{sort: 1,cate:'movie'},'fl'));
+    console.log(cheerio.jinja2('{{fl.地区 or 2}}-{{fl.排序 or 2}}-{{fl.剧情}}-{{fl.语言 or "11"}}-{{fl.字母}}---fypage---{{fl.年份}}.html',{fl:{sort: 1,地区:'movie2'}}));
     console.log("init_test_end");
 }
 
@@ -241,7 +242,7 @@ function urljoin(fromPath, nowPath) {
 }
 
 function pjfh(html, parse, base_url) {
-    if (!parse || parse.trim().isEmpty())
+    if (!parse || !parse.trim())
         return '';
     if (typeof (html) === 'string')
         html = JSON.parse(html)
@@ -250,31 +251,31 @@ function pjfh(html, parse, base_url) {
         parse = '$.' + parse;
     parse = parse.split('||')
     for (let ps of parse) {
-        let ret = $.jp(ps, html);
+        let ret = cheerio.jp(ps, html);
         if (Array.isArray(ret))
             ret = ret[0] || ''
         else
             ret = ret || ''
         if (ret && typeof (ret) !== 'string')
             ret = ret.toString();
-        if (base_url && ret && ret.isNotEmpty())
+        if (base_url && ret)
             ret = urljoin(base_url, ret);
         console.log(ret)
-        if (ret && ret.isNotEmpty())
+        if (ret)
             return ret;
     }
     return '';
 }
 
 function pjfa(html, parse) {
-    if (!parse || parse.trim().isEmpty())
+    if (!parse || !parse.trim())
         return '';
     if (typeof (html) === 'string')
         html = JSON.parse(html)
     parse = parse.trim()
     if (!parse.startsWith('$.'))
         parse = '$.' + parse
-    let ret = cheerio.load('').jp(parse, html)
+    let ret = cheerio.jp(parse, html)
     if (Array.isArray(ret) && Array.isArray(ret[0]) && ret.length === 1)
         return ret[0] || []
     return ret || []
@@ -285,7 +286,7 @@ const SELECT_REGEX = /:eq|:lt|:gt|#/g;
 const SELECT_REGEX_A = /:eq|:lt|:gt/g;
 
 function pdfh(html, parse, base_url) {
-    if (!parse || parse.isEmpty())
+    if (!parse || !parse.trim())
         return ''
     let option = undefined;
     if (parse.indexOf('&&') > -1) {
@@ -330,7 +331,7 @@ function pdfh(html, parse, base_url) {
 }
 
 function pdfa(html, parse) {
-    if (!parse || parse.isEmpty())
+    if (!parse || !parse.trim())
         return []
     if (parse.indexOf('&&') > -1) {
         let sp = parse.split('&&');
@@ -343,14 +344,13 @@ function pdfa(html, parse) {
     }
     const $ = cheerio.load(html);
     let ret = $(parse);
+    let result = [];
     if (ret) {
-        ret.forEach = function (call) {
-            for (const item of ret) {
-                call(item);
-            }
-        };
+        ret.each(function (idx, ele) {
+            result.push($(ele).toString());
+        })
     }
-    return ret;
+    return result;
 }
 
 /**
@@ -539,7 +539,6 @@ function homeParse(homeObj) {
                 let html = getHtml(homeObj.MY_URL);
                 if (html) {
                     let list = pdfa(html, p[0]);
-                    console.log(list.forEach)
                     if (list && list.length > 0) {
                         list.forEach(it => {
                             try {

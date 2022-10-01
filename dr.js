@@ -100,7 +100,7 @@ function pjfh(html, parse, base_url) {
         parse = '$.' + parse;
     parse = parse.split('||')
     for (let ps of parse) {
-        let ret = $.jp(ps, html);
+        let ret = cheerio.jp(ps, html);
         if (Array.isArray(ret))
             ret = ret[0] || ''
         else
@@ -124,7 +124,7 @@ function pjfa(html, parse) {
     parse = parse.trim()
     if (!parse.startsWith('$.'))
         parse = '$.' + parse
-    let ret = $.jp(parse, html)
+    let ret = cheerio.jp(parse, html)
     if (Array.isArray(ret) && Array.isArray(ret[0]) && ret.length === 1)
         return ret[0] || []
     return ret || []
