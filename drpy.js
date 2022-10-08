@@ -1077,7 +1077,7 @@ function searchParse(searchObj) {
 function detailParse(detailObj) {
     fetch_params = JSON.parse(JSON.stringify(rule_fetch_params));
     let vod = {
-        vod_id: "id",
+        vod_id: detailObj.orId, //"id",
         vod_name: "片名",
         vod_pic: "",
         type_name: "剧情",
@@ -1414,6 +1414,7 @@ function category(tid, pg, filter, extend) {
  * @returns {string}
  */
 function detail(vod_url) {
+    let orId = vod_url;
     let fyclass = '';
     if (vod_url.indexOf('$') > -1) {
         let tmp = vod_url.split('$');
@@ -1430,6 +1431,7 @@ function detail(vod_url) {
         url = detailUrl
     }
     let detailObj = {
+        orId: orId,
         url: url,
         二级: rule.二级,
         detailUrl: detailUrl,
