@@ -1,72 +1,40 @@
-import './dr/drT.js';
-// import 模板 from 'https://gitcode.net/qq_32394351/dr_py/-/raw/master/js/模板.js'
-// var rule = Object.assign(模板.首图2,{
-// host: 'https://www.zbkk.net',
-// });
 import './lib/util.js';
-import cheerio from './lib/cheerio.min.js';
-import { muban } from './dr/模板.js';
+import cheerio from 'assets://js/lib/cheerio.min.js';
+import 'assets://js/lib/crypto-js.js'
+import muban from 'https://gitcode.net/qq_32394351/dr_py/-/raw/master/js/模板.js';
 
-const key = 'drpy_zbk';
-
+// const key = 'drpy_zbk';
+// eval(req('http://192.168.1.124:5705/libs/es6py.js').content);
 function init_test() {
     console.log("init_test_start");
+    console.log(RKEY);
+    console.log(JSON.stringify(rule));
     // clearItem(RULE_CK);
     // console.log(JSON.stringify(rule));
     // console.log(request('https://www.baidu.com',{withHeaders:true}));
-    // console.log(request('https://www.baidu.com/favicon.ico',{toBase64:true}));
+    console.log(request('https://www.baidu.com/favicon.ico', { toBase64: true }));
     // require('http://192.168.10.99:5705/txt/pluto/drT.js');
     // console.log(typeof(drT));
     // console.log(drT.renderText('{{fl.cate}},hi, {{fl}}哈哈.{{fl}}',{sort: 1,cate:'movie'},'fl'));
-    console.log(cheerio.jinja2('{{fl.地区 or 2}}-{{fl.排序 or 2}}-{{fl.剧情}}-{{fl.语言 or "11"}}-{{fl.字母}}---fypage---{{fl.年份}}.html',{fl:{sort: 1,地区:'movie2'}}));
     console.log("init_test_end");
 }
 
-let rule = {
-    title: '真不卡',
-    host: 'https://www.zbkk.net',
-    // url: '/vodshow/fyclass--------fypage---.html',
-    url: '/vodshow/fyclass-fyfilter',
-    filter_url: '{{fl.地区}}-{{fl.排序}}-{{fl.剧情}}-{{fl.语言}}-{{fl.字母}}---fypage---{{fl.年份}}.html',
-    searchUrl: '/vodsearch/**----------fypage---.html',
-    filter: { '1': [{ 'key': '剧情', 'name': '按剧情', 'value': [{ 'n': '全部', 'v': '' }, { 'n': '喜剧', 'v': '%E5%96%9C%E5%89%A7' }, { 'n': '爱情', 'v': '%E7%88%B1%E6%83%85' }, { 'n': '恐怖', 'v': '%E6%81%90%E6%80%96' }, { 'n': '动作', 'v': '%E5%8A%A8%E4%BD%9C' }, { 'n': '科幻', 'v': '%E7%A7%91%E5%B9%BB' }, { 'n': '剧情', 'v': '%E5%89%A7%E6%83%85' }, { 'n': '战争', 'v': '%E6%88%98%E4%BA%89' }, { 'n': '警匪', 'v': '%E8%AD%A6%E5%8C%AA' }, { 'n': '犯罪', 'v': '%E7%8A%AF%E7%BD%AA' }, { 'n': '动画', 'v': '%E5%8A%A8%E7%94%BB' }, { 'n': '奇幻', 'v': '%E5%A5%87%E5%B9%BB' }, { 'n': '武侠', 'v': '%E6%AD%A6%E4%BE%A0' }, { 'n': '冒险', 'v': '%E5%86%92%E9%99%A9' }, { 'n': '枪战', 'v': '%E6%9E%AA%E6%88%98' }, { 'n': '恐怖', 'v': '%E6%81%90%E6%80%96' }, { 'n': '悬疑', 'v': '%E6%82%AC%E7%96%91' }, { 'n': '惊悚', 'v': '%E6%83%8A%E6%82%9A' }, { 'n': '经典', 'v': '%E7%BB%8F%E5%85%B8' }, { 'n': '青春', 'v': '%E9%9D%92%E6%98%A5' }, { 'n': '文艺', 'v': '%E6%96%87%E8%89%BA' }, { 'n': '微电影', 'v': '%E5%BE%AE%E7%94%B5%E5%BD%B1' }, { 'n': '古装', 'v': '%E5%8F%A4%E8%A3%85' }, { 'n': '历史', 'v': '%E5%8E%86%E5%8F%B2' }, { 'n': '运动', 'v': '%E8%BF%90%E5%8A%A8' }, { 'n': '农村', 'v': '%E5%86%9C%E6%9D%91' }, { 'n': '儿童', 'v': '%E5%84%BF%E7%AB%A5' }, { 'n': '网络电影', 'v': '%E7%BD%91%E7%BB%9C%E7%94%B5%E5%BD%B1' }] }, { 'key': '地区', 'name': '按地区', 'value': [{ 'n': '全部', 'v': '' }, { 'n': '大陆', 'v': '%E5%A4%A7%E9%99%86' }, { 'n': '香港', 'v': '%E9%A6%99%E6%B8%AF' }, { 'n': '台湾', 'v': '%E5%8F%B0%E6%B9%BE' }, { 'n': '美国', 'v': '%E7%BE%8E%E5%9B%BD' }, { 'n': '法国', 'v': '%E6%B3%95%E5%9B%BD' }, { 'n': '英国', 'v': '%E8%8B%B1%E5%9B%BD' }, { 'n': '日本', 'v': '%E6%97%A5%E6%9C%AC' }, { 'n': '韩国', 'v': '%E9%9F%A9%E5%9B%BD' }, { 'n': '德国', 'v': '%E5%BE%B7%E5%9B%BD' }, { 'n': '泰国', 'v': '%E6%B3%B0%E5%9B%BD' }, { 'n': '印度', 'v': '%E5%8D%B0%E5%BA%A6' }, { 'n': '意大利', 'v': '%E6%84%8F%E5%A4%A7%E5%88%A9' }, { 'n': '西班牙', 'v': '%E8%A5%BF%E7%8F%AD%E7%89%99' }, { 'n': '加拿大', 'v': '%E5%8A%A0%E6%8B%BF%E5%A4%A7' }, { 'n': '其他', 'v': '%E5%85%B6%E4%BB%96' }] }, { 'key': '年份', 'name': '按年份', 'value': [{ 'n': '全部', 'v': '' }, { 'n': '2022', 'v': '2022' }, { 'n': '2021', 'v': '2021' }, { 'n': '2020', 'v': '2020' }, { 'n': '2019', 'v': '2019' }, { 'n': '2018', 'v': '2018' }, { 'n': '2017', 'v': '2017' }, { 'n': '2016', 'v': '2016' }, { 'n': '2015', 'v': '2015' }, { 'n': '2014', 'v': '2014' }, { 'n': '2013', 'v': '2013' }, { 'n': '2012', 'v': '2012' }, { 'n': '2011', 'v': '2011' }, { 'n': '2010', 'v': '2010' }] }, { 'key': '语言', 'name': '按语言', 'value': [{ 'n': '全部', 'v': '' }, { 'n': '国语', 'v': '%E5%9B%BD%E8%AF%AD' }, { 'n': '英语', 'v': '%E8%8B%B1%E8%AF%AD' }, { 'n': '粤语', 'v': '%E7%B2%A4%E8%AF%AD' }, { 'n': '闽南语', 'v': '%E9%97%BD%E5%8D%97%E8%AF%AD' }, { 'n': '韩语', 'v': '%E9%9F%A9%E8%AF%AD' }, { 'n': '日语', 'v': '%E6%97%A5%E8%AF%AD' }, { 'n': '法语', 'v': '%E6%B3%95%E8%AF%AD' }, { 'n': '德语', 'v': '%E5%BE%B7%E8%AF%AD' }, { 'n': '其它', 'v': '%E5%85%B6%E5%AE%83' }] }, { 'key': '字母', 'name': '按字母', 'value': [{ 'n': '全部', 'v': '' }, { 'n': 'A', 'v': 'A' }, { 'n': 'B', 'v': 'B' }, { 'n': 'C', 'v': 'C' }, { 'n': 'D', 'v': 'D' }, { 'n': 'E', 'v': 'E' }, { 'n': 'F', 'v': 'F' }, { 'n': 'G', 'v': 'G' }, { 'n': 'H', 'v': 'H' }, { 'n': 'I', 'v': 'I' }, { 'n': 'J', 'v': 'J' }, { 'n': 'K', 'v': 'K' }, { 'n': 'L', 'v': 'L' }, { 'n': 'M', 'v': 'M' }, { 'n': 'N', 'v': 'N' }, { 'n': 'O', 'v': 'O' }, { 'n': 'P', 'v': 'P' }, { 'n': 'Q', 'v': 'Q' }, { 'n': 'R', 'v': 'R' }, { 'n': 'S', 'v': 'S' }, { 'n': 'T', 'v': 'T' }, { 'n': 'U', 'v': 'U' }, { 'n': 'V', 'v': 'V' }, { 'n': 'W', 'v': 'W' }, { 'n': 'X', 'v': 'X' }, { 'n': 'Y', 'v': 'Y' }, { 'n': 'Z', 'v': 'Z' }, { 'n': '0-9', 'v': '09' }] }], '2': [{ 'key': '剧情', 'name': '按剧情', 'value': [{ 'n': '全部', 'v': '' }, { 'n': '古装', 'v': '%E5%8F%A4%E8%A3%85' }, { 'n': '战争', 'v': '%E6%88%98%E4%BA%89' }, { 'n': '青春偶像', 'v': '%E9%9D%92%E6%98%A5%E5%81%B6%E5%83%8F' }, { 'n': '喜剧', 'v': '%E5%96%9C%E5%89%A7' }, { 'n': '家庭', 'v': '%E5%AE%B6%E5%BA%AD' }, { 'n': '犯罪', 'v': '%E7%8A%AF%E7%BD%AA' }, { 'n': '动作', 'v': '%E5%8A%A8%E4%BD%9C' }, { 'n': '奇幻', 'v': '%E5%A5%87%E5%B9%BB' }, { 'n': '剧情', 'v': '%E5%89%A7%E6%83%85' }, { 'n': '历史', 'v': '%E5%8E%86%E5%8F%B2' }, { 'n': '经典', 'v': '%E7%BB%8F%E5%85%B8' }, { 'n': '乡村', 'v': '%E4%B9%A1%E6%9D%91' }, { 'n': '情景', 'v': '%E6%83%85%E6%99%AF' }, { 'n': '商战', 'v': '%E5%95%86%E6%88%98' }, { 'n': '网剧', 'v': '%E7%BD%91%E5%89%A7' }, { 'n': '其他', 'v': '%E5%85%B6%E4%BB%96' }] }, { 'key': '地区', 'name': '按地区', 'value': [{ 'n': '全部', 'v': '' }, { 'n': '内地', 'v': '%E5%86%85%E5%9C%B0' }, { 'n': '韩国', 'v': '%E9%9F%A9%E5%9B%BD' }, { 'n': '香港', 'v': '%E9%A6%99%E6%B8%AF' }, { 'n': '台湾', 'v': '%E5%8F%B0%E6%B9%BE' }, { 'n': '日本', 'v': '%E6%97%A5%E6%9C%AC' }, { 'n': '美国', 'v': '%E7%BE%8E%E5%9B%BD' }, { 'n': '泰国', 'v': '%E6%B3%B0%E5%9B%BD' }, { 'n': '英国', 'v': '%E8%8B%B1%E5%9B%BD' }, { 'n': '新加坡', 'v': '%E6%96%B0%E5%8A%A0%E5%9D%A1' }, { 'n': '其他', 'v': '%E5%85%B6%E4%BB%96' }] }, { 'key': '年份', 'name': '按年份', 'value': [{ 'n': '全部', 'v': '' }, { 'n': '2022', 'v': '2022' }, { 'n': '2021', 'v': '2021' }, { 'n': '2020', 'v': '2020' }, { 'n': '2019', 'v': '2019' }, { 'n': '2018', 'v': '2018' }, { 'n': '2017', 'v': '2017' }, { 'n': '2016', 'v': '2016' }, { 'n': '2015', 'v': '2015' }, { 'n': '2014', 'v': '2014' }, { 'n': '2013', 'v': '2013' }, { 'n': '2012', 'v': '2012' }, { 'n': '2011', 'v': '2011' }, { 'n': '2010', 'v': '2010' }] }, { 'key': '语言', 'name': '按语言', 'value': [{ 'n': '全部', 'v': '' }, { 'n': '国语', 'v': '%E5%9B%BD%E8%AF%AD' }, { 'n': '英语', 'v': '%E8%8B%B1%E8%AF%AD' }, { 'n': '粤语', 'v': '%E7%B2%A4%E8%AF%AD' }, { 'n': '闽南语', 'v': '%E9%97%BD%E5%8D%97%E8%AF%AD' }, { 'n': '韩语', 'v': '%E9%9F%A9%E8%AF%AD' }, { 'n': '日语', 'v': '%E6%97%A5%E8%AF%AD' }, { 'n': '其它', 'v': '%E5%85%B6%E5%AE%83' }] }, { 'key': '字母', 'name': '按字母', 'value': [{ 'n': '全部', 'v': '' }, { 'n': 'A', 'v': 'A' }, { 'n': 'B', 'v': 'B' }, { 'n': 'C', 'v': 'C' }, { 'n': 'D', 'v': 'D' }, { 'n': 'E', 'v': 'E' }, { 'n': 'F', 'v': 'F' }, { 'n': 'G', 'v': 'G' }, { 'n': 'H', 'v': 'H' }, { 'n': 'I', 'v': 'I' }, { 'n': 'J', 'v': 'J' }, { 'n': 'K', 'v': 'K' }, { 'n': 'L', 'v': 'L' }, { 'n': 'M', 'v': 'M' }, { 'n': 'N', 'v': 'N' }, { 'n': 'O', 'v': 'O' }, { 'n': 'P', 'v': 'P' }, { 'n': 'Q', 'v': 'Q' }, { 'n': 'R', 'v': 'R' }, { 'n': 'S', 'v': 'S' }, { 'n': 'T', 'v': 'T' }, { 'n': 'U', 'v': 'U' }, { 'n': 'V', 'v': 'V' }, { 'n': 'W', 'v': 'W' }, { 'n': 'X', 'v': 'X' }, { 'n': 'Y', 'v': 'Y' }, { 'n': 'Z', 'v': 'Z' }, { 'n': '0-9', 'v': '09' }] }], '3': [{ 'key': '剧情', 'name': '按剧情', 'value': [{ 'n': '全部', 'v': '' }, { 'n': '选秀', 'v': '%E9%80%89%E7%A7%80' }, { 'n': '情感', 'v': '%E6%83%85%E6%84%9F' }, { 'n': '访谈', 'v': '%E8%AE%BF%E8%B0%88' }, { 'n': '播报', 'v': '%E6%92%AD%E6%8A%A5' }, { 'n': '旅游', 'v': '%E6%97%85%E6%B8%B8' }, { 'n': '音乐', 'v': '%E9%9F%B3%E4%B9%90' }, { 'n': '美食', 'v': '%E7%BE%8E%E9%A3%9F' }, { 'n': '纪实', 'v': '%E7%BA%AA%E5%AE%9E' }, { 'n': '曲艺', 'v': '%E6%9B%B2%E8%89%BA' }, { 'n': '生活', 'v': '%E7%94%9F%E6%B4%BB' }, { 'n': '游戏互动', 'v': '%E6%B8%B8%E6%88%8F%E4%BA%92%E5%8A%A8' }, { 'n': '财经', 'v': '%E8%B4%A2%E7%BB%8F' }, { 'n': '求职', 'v': '%E6%B1%82%E8%81%8C' }] }, { 'key': '地区', 'name': '按地区', 'value': [{ 'n': '全部', 'v': '' }, { 'n': '内地', 'v': '%E5%86%85%E5%9C%B0' }, { 'n': '港台', 'v': '%E6%B8%AF%E5%8F%B0' }, { 'n': '日韩', 'v': '%E6%97%A5%E9%9F%A9' }, { 'n': '欧美', 'v': '%E6%AC%A7%E7%BE%8E' }] }, { 'key': '年份', 'name': '按年份', 'value': [{ 'n': '全部', 'v': '' }, { 'n': '2022', 'v': '2022' }, { 'n': '2021', 'v': '2021' }, { 'n': '2020', 'v': '2020' }, { 'n': '2019', 'v': '2019' }, { 'n': '2018', 'v': '2018' }, { 'n': '2017', 'v': '2017' }, { 'n': '2016', 'v': '2016' }, { 'n': '2015', 'v': '2015' }, { 'n': '2014', 'v': '2014' }, { 'n': '2013', 'v': '2013' }, { 'n': '2012', 'v': '2012' }, { 'n': '2011', 'v': '2011' }, { 'n': '2010', 'v': '2010' }] }, { 'key': '语言', 'name': '按语言', 'value': [{ 'n': '全部', 'v': '' }, { 'n': '国语', 'v': '%E5%9B%BD%E8%AF%AD' }, { 'n': '英语', 'v': '%E8%8B%B1%E8%AF%AD' }, { 'n': '粤语', 'v': '%E7%B2%A4%E8%AF%AD' }, { 'n': '闽南语', 'v': '%E9%97%BD%E5%8D%97%E8%AF%AD' }, { 'n': '韩语', 'v': '%E9%9F%A9%E8%AF%AD' }, { 'n': '日语', 'v': '%E6%97%A5%E8%AF%AD' }, { 'n': '其它', 'v': '%E5%85%B6%E5%AE%83' }] }, { 'key': '字母', 'name': '按字母', 'value': [{ 'n': '全部', 'v': '' }, { 'n': 'A', 'v': 'A' }, { 'n': 'B', 'v': 'B' }, { 'n': 'C', 'v': 'C' }, { 'n': 'D', 'v': 'D' }, { 'n': 'E', 'v': 'E' }, { 'n': 'F', 'v': 'F' }, { 'n': 'G', 'v': 'G' }, { 'n': 'H', 'v': 'H' }, { 'n': 'I', 'v': 'I' }, { 'n': 'J', 'v': 'J' }, { 'n': 'K', 'v': 'K' }, { 'n': 'L', 'v': 'L' }, { 'n': 'M', 'v': 'M' }, { 'n': 'N', 'v': 'N' }, { 'n': 'O', 'v': 'O' }, { 'n': 'P', 'v': 'P' }, { 'n': 'Q', 'v': 'Q' }, { 'n': 'R', 'v': 'R' }, { 'n': 'S', 'v': 'S' }, { 'n': 'T', 'v': 'T' }, { 'n': 'U', 'v': 'U' }, { 'n': 'V', 'v': 'V' }, { 'n': 'W', 'v': 'W' }, { 'n': 'X', 'v': 'X' }, { 'n': 'Y', 'v': 'Y' }, { 'n': 'Z', 'v': 'Z' }, { 'n': '0-9', 'v': '09' }] }], '4': [{ 'key': '剧情', 'name': '按剧情', 'value': [{ 'n': '全部', 'v': '' }, { 'n': '情感', 'v': '%E6%83%85%E6%84%9F' }, { 'n': '科幻', 'v': '%E7%A7%91%E5%B9%BB' }, { 'n': '热血', 'v': '%E7%83%AD%E8%A1%80' }, { 'n': '推理', 'v': '%E6%8E%A8%E7%90%86' }, { 'n': '搞笑', 'v': '%E6%90%9E%E7%AC%91' }, { 'n': '冒险', 'v': '%E5%86%92%E9%99%A9' }, { 'n': '萝莉', 'v': '%E8%90%9D%E8%8E%89' }, { 'n': '校园', 'v': '%E6%A0%A1%E5%9B%AD' }, { 'n': '动作', 'v': '%E5%8A%A8%E4%BD%9C' }, { 'n': '机战', 'v': '%E6%9C%BA%E6%88%98' }, { 'n': '运动', 'v': '%E8%BF%90%E5%8A%A8' }, { 'n': '战争', 'v': '%E6%88%98%E4%BA%89' }, { 'n': '少年', 'v': '%E5%B0%91%E5%B9%B4' }, { 'n': '少女', 'v': '%E5%B0%91%E5%A5%B3' }, { 'n': '社会', 'v': '%E7%A4%BE%E4%BC%9A' }, { 'n': '原创', 'v': '%E5%8E%9F%E5%88%9B' }, { 'n': '亲子', 'v': '%E4%BA%B2%E5%AD%90' }, { 'n': '益智', 'v': '%E7%9B%8A%E6%99%BA' }, { 'n': '励志', 'v': '%E5%8A%B1%E5%BF%97' }, { 'n': '其他', 'v': '%E5%85%B6%E4%BB%96' }] }, { 'key': '地区', 'name': '按地区', 'value': [{ 'n': '全部', 'v': '' }, { 'n': '国产', 'v': '%E5%9B%BD%E4%BA%A7' }, { 'n': '日本', 'v': '%E6%97%A5%E6%9C%AC' }, { 'n': '欧美', 'v': '%E6%AC%A7%E7%BE%8E' }, { 'n': '其他', 'v': '%E5%85%B6%E4%BB%96' }] }, { 'key': '年份', 'name': '按年份', 'value': [{ 'n': '全部', 'v': '' }, { 'n': '2022', 'v': '2022' }, { 'n': '2021', 'v': '2021' }, { 'n': '2020', 'v': '2020' }, { 'n': '2019', 'v': '2019' }, { 'n': '2018', 'v': '2018' }, { 'n': '2017', 'v': '2017' }, { 'n': '2016', 'v': '2016' }, { 'n': '2015', 'v': '2015' }, { 'n': '2014', 'v': '2014' }, { 'n': '2013', 'v': '2013' }, { 'n': '2012', 'v': '2012' }, { 'n': '2011', 'v': '2011' }, { 'n': '2010', 'v': '2010' }] }, { 'key': '语言', 'name': '按语言', 'value': [{ 'n': '全部', 'v': '' }, { 'n': '国语', 'v': '%E5%9B%BD%E8%AF%AD' }, { 'n': '英语', 'v': '%E8%8B%B1%E8%AF%AD' }, { 'n': '粤语', 'v': '%E7%B2%A4%E8%AF%AD' }, { 'n': '闽南语', 'v': '%E9%97%BD%E5%8D%97%E8%AF%AD' }, { 'n': '韩语', 'v': '%E9%9F%A9%E8%AF%AD' }, { 'n': '日语', 'v': '%E6%97%A5%E8%AF%AD' }, { 'n': '其它', 'v': '%E5%85%B6%E5%AE%83' }] }, { 'key': '字母', 'name': '按字母', 'value': [{ 'n': '全部', 'v': '' }, { 'n': 'A', 'v': 'A' }, { 'n': 'B', 'v': 'B' }, { 'n': 'C', 'v': 'C' }, { 'n': 'D', 'v': 'D' }, { 'n': 'E', 'v': 'E' }, { 'n': 'F', 'v': 'F' }, { 'n': 'G', 'v': 'G' }, { 'n': 'H', 'v': 'H' }, { 'n': 'I', 'v': 'I' }, { 'n': 'J', 'v': 'J' }, { 'n': 'K', 'v': 'K' }, { 'n': 'L', 'v': 'L' }, { 'n': 'M', 'v': 'M' }, { 'n': 'N', 'v': 'N' }, { 'n': 'O', 'v': 'O' }, { 'n': 'P', 'v': 'P' }, { 'n': 'Q', 'v': 'Q' }, { 'n': 'R', 'v': 'R' }, { 'n': 'S', 'v': 'S' }, { 'n': 'T', 'v': 'T' }, { 'n': 'U', 'v': 'U' }, { 'n': 'V', 'v': 'V' }, { 'n': 'W', 'v': 'W' }, { 'n': 'X', 'v': 'X' }, { 'n': 'Y', 'v': 'Y' }, { 'n': 'Z', 'v': 'Z' }, { 'n': '0-9', 'v': '09' }] }] },
-    // headers: {
-    //     'User-Agent': MOBILE_UA
-    // },
-    // play_parse:true,
-    // lazy:'',
-    class_parse: '.stui-header__menu .dropdown li:gt(0):lt(5);a&&Text;a&&href;.*/(.*?).html',
-    一级: '.stui-vodlist li;a&&title;a&&data-original;.pic-text&&Text;a&&href',
-    推荐: 'ul.stui-vodlist.clearfix;body&&li;a&&title;.lazyload&&data-original;.pic-text&&Text;a&&href',
-    二级: { "title": ".stui-content__detail .title&&Text;.stui-content__detail p:eq(-2)&&Text", "img": ".stui-content__thumb .lazyload&&data-original", "desc": ".stui-content__detail p:eq(0)&&Text;.stui-content__detail p:eq(1)&&Text;.stui-content__detail p:eq(2)&&Text", "content": ".detail&&Text", "tabs": "body&&h3.title", "lists": ".stui-content__playlist,#id&&li" },
-    double: true, // 推荐内容是否双层定位
-    //搜索:'ul.stui-vodlist__media:eq(0) li,ul.stui-vodlist:eq(0) li,#searchList li;a&&title;.lazyload&&data-original;.text-muted&&Text;a&&href;.text-muted:eq(-1)&&Text',
-    搜索: 'body&&ul.stui-vodlist__media&&li;a&&title;.lazyload&&data-original;.text-muted&&Text;a&&href;.text-muted:eq(-1)&&Text',
-    // cate_exclude: '首页|留言|APP|下载|资讯|新闻|动态',
-    // tab_exclude: '猜你|喜欢|APP|下载|剧情',
-}
-
-
-/****上面才是pluto的drpy源,支持import外部模板来继承修改
- *  已知问题记录:
- *  自动补body逻辑可能有Bug，二级选集列表现在不正常了会报错
- *  1.pdfa没法正确获取非body开头的直接定位列表,比如 推荐 body&&ul.stui-vodlist.clearfix 和 ul.stui-vodlist.clearfix 获取出来的列表不一样,建议自动补body(已解决)
- * 2. pd函数有问题,没法正确的urljoin来源链接,比如分类页获取到数据href为/zbkdetail/63174.html应该自动与rule.url拼接后才返回给二级完整链接 (已解决)
- * .stui-pannel_hd h3 这个pdfa都没法识别?
- * pdf 系列不支持eq定位?
- * 解析播放问题,parse返回的1怎么下面不出解析选项 ?? 不过可以通免
- * urljoin问题,求求了这个函数很重要,还要pd函数内部需要自动urljoin (已解决)
- * 请求重复问题,调试日志一个console总是打印两次？？(待解决)
- * 筛选功能暂未实现,搜索验证码暂未实现
- * quickjs发生一次崩溃后除非重启软件,否则该源后续操作点击二级都没有数据
- * setItem系列存在问题,用的公用变量实现没法持久化,需要一个数据库存储持久化,下次进来也能获取储存的cookie
- * 电脑看日志调试
+let rule = {};
+/** 已知问题记录
+ * 1.影魔的jinjia2引擎不支持 {{fl}}对象直接渲染
+ * Array.prototype.append = Array.prototype.push; 这种js执行后有毛病,for in 循环列表会把属性给打印出来
+ * 2.import es6py.js但是里面的函数没有被装载进来.比如drpy规则报错setResult2 is undefiend
+ * 3.无法重复导入cheerio(怎么解决drpy和parseTag里都需要导入cheerio的问题) 无法在副文件导入cheerio (现在是全部放在drpy一个文件里了,凑合解决?)
+ * 4.有个错误不知道哪儿来的 executeScript: com.quickjs.JSObject$Undefined cannot be cast to java.lang.String 在 点击选集播放打印init_test_end后面打印
+ * 5.需要实现 stringify 函数,比起JSON.stringify函数,它会原封不动保留中文不会编码unicode
+ * todo:  jsp:{pdfa,pdfh,pd},json:{pdfa,pdfh,pd},jq:{pdfa,pdfh,pd}
+ *  * 电脑看日志调试
  adb tcpip 5555
  adb connect 192.168.10.192
  adb devices -l
  adb logcat -c
  adb logcat | grep -i QuickJS
- * ***/
+ * **/
 
 
 /*** 以下是内置变量和解析方法 **/
@@ -76,28 +44,333 @@ const UA = 'Mozilla/5.0';
 const UC_UA = 'Mozilla/5.0 (Linux; U; Android 9; zh-CN; MI 9 Build/PKQ1.181121.001) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/57.0.2987.108 UCBrowser/12.5.5.1035 Mobile Safari/537.36';
 const IOS_UA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1';
 const RULE_CK = 'cookie'; // 源cookie的key值
-const KEY = typeof (key) !== 'undefined' && key ? key : 'drpy_' + rule.title; // 源的唯一标识
+// const KEY = typeof(key)!=='undefined'&&key?key:'drpy_' + (rule.title || rule.host); // 源的唯一标识
 const CATE_EXCLUDE = '首页|留言|APP|下载|资讯|新闻|动态';
 const TAB_EXCLUDE = '猜你|喜欢|APP|下载|剧情|热播';
 const OCR_RETRY = 3;//ocr验证重试次数
 // const OCR_API = 'http://dm.mudery.com:10000';//ocr在线识别接口
-const OCR_API = 'http://192.168.3.239:5705/parse/ocr';//ocr在线识别接口
-var MY_URL; // 全局注入变量,pd函数需要
-var VODS = [];// 一级或者搜索需要的数据列表
-var vod = {};//二级用单个影片详情
+// const OCR_API = 'http://192.168.3.239:5705/parse/ocr';//ocr在线识别接口
+const OCR_API = 'http://cms.nokia.press/parse/ocr';//ocr在线识别接口
+if (typeof (MY_URL) === 'undefined') {
+    var MY_URL; // 全局注入变量,pd函数需要
+}
+var RKEY; // 源的唯一标识
+var fetch;
+var print;
+var log;
+var rule_fetch_params;
+var fetch_params; // 每个位置单独的
+var oheaders;
+var _pdfh;
+var _pdfa;
+var _pd;
+// const DOM_CHECK_ATTR = ['url', 'src', 'href', 'data-original', 'data-src'];
+const DOM_CHECK_ATTR = /(url|src|href|data-original|data-src)$/;
+const SELECT_REGEX = /:eq|:lt|:gt|#/g;
+const SELECT_REGEX_A = /:eq|:lt|:gt/g;
 
-/** 处理一下 rule规则关键字段没传递的情况 **/
-let rule_cate_excludes = (rule.cate_exclude || '').split('|').filter(it => it.trim());
-let rule_tab_excludes = (rule.tab_exclude || '').split('|').filter(it => it.trim());
-rule_cate_excludes = rule_cate_excludes.concat(CATE_EXCLUDE.split('|').filter(it => it.trim()));
-rule_tab_excludes = rule_tab_excludes.concat(TAB_EXCLUDE.split('|').filter(it => it.trim()));
+function setResult(d) {
+    if (!Array.isArray(d)) {
+        return []
+    }
+    VODS = [];
+    // print(d);
+    d.forEach(function (it) {
+        let obj = {
+            vod_id: it.url || '',
+            vod_name: it.title || '',
+            vod_remarks: it.desc || '',
+            vod_content: it.content || '',
+            vod_pic: it.pic_url || it.img || '',
+        };
+        let keys = Object.keys(it);
+        if (keys.includes('tname')) {
+            obj.type_name = it.tname || '';
+        }
+        if (keys.includes('tid')) {
+            obj.type_id = it.tid || '';
+        }
+        if (keys.includes('year')) {
+            obj.vod_year = it.year || '';
+        }
+        if (keys.includes('actor')) {
+            obj.vod_actor = it.actor || '';
+        }
+        if (keys.includes('director')) {
+            obj.vod_director = it.director || '';
+        }
+        if (keys.includes('area')) {
+            obj.vod_area = it.area || '';
+        }
+        VODS.push(obj);
+    });
+    return VODS
+}
+function setResult2(res) {
+    VODS = res.list || [];
+    return VODS
+}
+function setHomeResult(res) {
+    if (!res || typeof (res) !== 'object') {
+        return []
+    }
+    return setResult(res.list);
+}
+// 猫了个咪
+function rc(js) {
+    if (js === 'maomi_aes.js') {
+        var a = CryptoJS.enc.Utf8.parse("625222f9149e961d");
+        var t = CryptoJS.enc.Utf8.parse("5efdtf6060e2o330");
+        return {
+            De: function (word) {
+                word = CryptoJS.enc.Hex.parse(word)
+                return CryptoJS.AES.decrypt(CryptoJS.enc.Base64.stringify(word), a, {
+                    iv: t,
+                    mode: CryptoJS.mode.CBC,
+                    padding: CryptoJS.pad.Pkcs7
+                }).toString(CryptoJS.enc.Utf8)
+            },
+            En: function (word) {
+                // print(a);
+                // print(word);
+                var Encrypted = CryptoJS.AES.encrypt(word, a, {
+                    iv: t,
+                    mode: CryptoJS.mode.CBC,
+                    padding: CryptoJS.pad.Pkcs7
+                });
+                return Encrypted.ciphertext.toString();
+            }
+        };
+    }
+    return {};
+}
 
-rule.cate_exclude = rule_cate_excludes.join('\n');
-rule.tab_exclude = rule_tab_excludes.join('\n');
-rule.host = rule.host || '';
-rule.url = rule.url || '';
-rule.homeUrl = rule.homeUrl || '';
-rule.searchUrl = rule.searchUrl || '';
+// 千万不要用for in 推荐 forEach (for in 会打乱顺序)
+//猫函数
+function maoss(jxurl, ref, key) {
+    eval(getCryptoJS());
+    try {
+        var getVideoInfo = function (text) {
+            return CryptoJS.AES.decrypt(text, key, { iv: iv, padding: CryptoJS.pad.Pkcs7 }).toString(CryptoJS.enc.Utf8);
+        };
+        var token_key = key == undefined ? 'dvyYRQlnPRCMdQSe' : key;
+        if (ref) {
+            var html = request(jxurl, {
+                headers: {
+                    'Referer': ref
+                }
+            });
+        } else {
+            var html = request(jxurl);
+        }
+        // print(html);
+        if (html.indexOf('&btwaf=') != -1) {
+            html = request(jxurl + '&btwaf' + html.match(/&btwaf(.*?)"/)[1], {
+                headers: {
+                    'Referer': ref
+                }
+            })
+        }
+        var token_iv = html.split('_token = "')[1].split('"')[0];
+        var key = CryptoJS.enc.Utf8.parse(token_key);
+        var iv = CryptoJS.enc.Utf8.parse(token_iv);
+        // log("iv:"+iv);
+        //  log(html);
+        // print(key);
+        // print(iv);
+        eval(html.match(/var config = {[\s\S]*?}/)[0] + '');
+        // config.url = config.url.replace(/,/g,'');
+        // print(config.url);
+        if (!config.url.startsWith('http')) {
+            //config.url = decodeURIComponent(AES(config.url, key, iv));
+            config.url = CryptoJS.AES.decrypt(config.url, key, {
+                iv: iv,
+                padding: CryptoJS.pad.Pkcs7
+            }).toString(CryptoJS.enc.Utf8)
+        }
+        return config.url;
+    } catch (e) {
+        return '';
+    }
+}
+
+let VODS = [];// 一级或者搜索需要的数据列表
+let VOD = {};// 二级的单个数据
+
+/**
+ * 重写pd方法-增加自动urljoin(没法重写,改个名继续骗)
+ * @param html
+ * @param parse
+ * @param uri
+ * @returns {*}
+ */
+function pD(html, parse, uri) {
+    let ret = pdfh(html, parse);
+    if (typeof (uri) === 'undefined' || !uri) {
+        uri = '';
+    }
+    if (DOM_CHECK_ATTR.test(parse)) {
+        if (/http/.test(ret)) {
+            ret = ret.substr(ret.indexOf('http'));
+        } else {
+            ret = urljoin(MY_URL, ret)
+        }
+    }
+    // MY_URL = getItem('MY_URL',MY_URL);
+    // console.log(`规则${RKEY}打印MY_URL:${MY_URL},uri:${uri}`);
+    return ret
+}
+
+const parseTags = {
+    jsp: {
+        pdfh: pdfh,
+        pdfa: pdfa,
+        pd: pD,
+    },
+    json: {
+        pdfh(html, parse) {
+            if (!parse || !parse.trim()) {
+                return '';
+            }
+            if (typeof (html) === 'string') {
+                html = JSON.parse(html);
+            }
+            parse = parse.trim();
+            if (!parse.startsWith('$.')) {
+                parse = '$.' + parse;
+            }
+            parse = parse.split('||');
+            for (let ps of parse) {
+                let ret = cheerio.jp(ps, html);
+                if (Array.isArray(ret)) {
+                    ret = ret[0] || '';
+                } else {
+                    ret = ret || ''
+                }
+                if (ret && typeof (ret) !== 'string') {
+                    ret = ret.toString();
+                }
+                if (ret) {
+                    return ret
+                }
+            }
+            return '';
+        },
+        pdfa(html, parse) {
+            if (!parse || !parse.trim()) {
+                return '';
+            }
+            if (typeof (html) === 'string') {
+                html = JSON.parse(html);
+            }
+            parse = parse.trim()
+            if (!parse.startsWith('$.')) {
+                parse = '$.' + parse;
+            }
+            let ret = cheerio.jp(parse, html);
+            if (Array.isArray(ret) && Array.isArray(ret[0]) && ret.length === 1) {
+                return ret[0] || []
+            }
+            return ret || []
+        },
+        pd(html, parse) {
+            let ret = parseTags.json.pdfh(html, parse);
+            if (ret) {
+                return urljoin(MY_URL, ret);
+            }
+            return ret
+        },
+    },
+    jq: {
+        pdfh(html, parse, base_url) {
+            if (!parse || !parse.trim()) {
+                return ''
+            }
+            let option = undefined;
+            if (parse.indexOf('&&') > -1) {
+                let sp = parse.split('&&');
+                option = sp[sp.length - 1];
+                sp.splice(sp.length - 1);
+                if (sp.length > 1) {
+                    for (let i in sp) {
+                        if (!SELECT_REGEX.test(sp[i])) {
+                            sp[i] = sp[i] + ':eq(0)';
+                        }
+                    }
+                } else {
+                    if (!SELECT_REGEX.test(sp[0])) {
+                        sp[0] = sp[0] + ':eq(0)';
+                    }
+                }
+                parse = sp.join(' ');
+            }
+            let result = '';
+            const $ = cheerio.load(html);
+            let ret = $(parse);
+            if (option) {
+                if (option === 'Text') {
+                    result = $(ret).text();
+                }
+                else if (option === 'Html') {
+                    result = $(ret).html();
+                }
+                else {
+                    result = $(ret).attr(option);
+                }
+                if (result && base_url && DOM_CHECK_ATTR.test(option)) {
+                    if (/http/.test(result)) {
+                        result = result.substr(result.indexOf('http'));
+                    } else {
+                        result = urljoin(base_url, result)
+                    }
+                }
+            } else {
+                result = $(ret).toString();
+            }
+            return result;
+        },
+        pdfa(html, parse) {
+            if (!parse || !parse.trim()) {
+                return [];
+            }
+            if (parse.indexOf('&&') > -1) {
+                let sp = parse.split('&&');
+                for (let i in sp) {
+                    if (!SELECT_REGEX_A.test(sp[i]) && i < sp.length - 1) {
+                        sp[i] = sp[i] + ':eq(0)';
+                    }
+                }
+                parse = sp.join(' ');
+            }
+            const $ = cheerio.load(html);
+            let ret = $(parse);
+            let result = [];
+            if (ret) {
+                ret.each(function (idx, ele) {
+                    result.push($(ele).toString());
+                });
+            }
+            return result;
+        },
+        pd(html, parse, uri) {
+            return parseTags.jq.pdfh(html, parse, MY_URL);
+        },
+    },
+    getParse(p0) {//非js开头的情况自动获取解析标签
+        if (p0.startsWith('jsp:')) {
+            return this.jsp
+        } else if (p0.startsWith('json:')) {
+            return this.json
+        } else if (p0.startsWith('jq:')) {
+            return this.jq
+        } else {
+            return this.jq
+        }
+    }
+};
+
+const stringify = JSON.stringify;
+const jsp = parseTags.jsp;
 
 /*** 后台需要实现的java方法并注入到js中 ***/
 
@@ -115,6 +388,19 @@ function readFile(filePath) {
     let text = String.fromCharCode.apply(null, new Uint8Array(buffer));
     console.log(text);
     return text
+}
+
+/**
+ * 处理返回的json数据
+ * @param html
+ * @returns {*}
+ */
+function dealJson(html) {
+    try {
+        return html.match(/[\w|\W|\s|\S]*?(\{[\w|\W|\s|\S]*\})/).group[1];
+    } catch (e) {
+    }
+    return html;
 }
 
 /**
@@ -186,8 +472,8 @@ function verifyCode(url) {
  * @param v 值
  */
 function setItem(k, v) {
-    local.set(KEY, k, v);
-    console.log(`规则${KEY}设置${k} => ${v}`)
+    local.set(RKEY, k, v);
+    console.log(`规则${RKEY}设置${k} => ${v}`)
 }
 
 /**
@@ -197,7 +483,7 @@ function setItem(k, v) {
  * @returns {*}
  */
 function getItem(k, v) {
-    return local.get(KEY, k) || v;
+    return local.get(RKEY, k) || v;
 }
 
 /**
@@ -205,163 +491,7 @@ function getItem(k, v) {
  * @param k
  */
 function clearItem(k) {
-    local.delete(KEY, k);
-}
-
-/**
- *  url拼接(暂未实现)
- * @param fromPath 初始当前页面url
- * @param nowPath 相对当前页面url
- * @returns {*}
- */
-function urljoin(fromPath, nowPath) {
-    fromPath = fromPath || '';
-    nowPath = nowPath || '';
-    return joinUrl(fromPath, nowPath);
-    // try {
-    //     // import Uri from './uri.min.js';
-    //     // var Uri = require('./uri.min.js');
-    //     // eval(request('https://cdn.bootcdn.net/ajax/libs/URI.js/1.19.11/URI.min.js'));
-    //     // let new_uri = URI(nowPath, fromPath);
-
-    //     let new_uri = Uri(nowPath, fromPath);
-    //     new_uri = new_uri.toString();
-    //     // console.log(new_uri);
-    //     // return fromPath + nowPath
-    //     return new_uri
-    // }
-    // catch (e) {
-    //     console.log('urljoin发生错误:'+e.message);
-    //     if(nowPath.startsWith('http')){
-    //         return nowPath
-    //     }if(nowPath.startsWith('/')){
-    //         return getHome(fromPath)+nowPath
-    //     }
-    //     return fromPath+nowPath
-    // }
-}
-
-function pjfh(html, parse, base_url) {
-    if (!parse || !parse.trim())
-        return '';
-    if (typeof (html) === 'string')
-        html = JSON.parse(html)
-    parse = parse.trim()
-    if (!parse.startsWith('$.'))
-        parse = '$.' + parse;
-    parse = parse.split('||')
-    for (let ps of parse) {
-        let ret = cheerio.jp(ps, html);
-        if (Array.isArray(ret))
-            ret = ret[0] || ''
-        else
-            ret = ret || ''
-        if (ret && typeof (ret) !== 'string')
-            ret = ret.toString();
-        if (base_url && ret)
-            ret = urljoin(base_url, ret);
-        console.log(ret)
-        if (ret)
-            return ret;
-    }
-    return '';
-}
-
-function pjfa(html, parse) {
-    if (!parse || !parse.trim())
-        return '';
-    if (typeof (html) === 'string')
-        html = JSON.parse(html)
-    parse = parse.trim()
-    if (!parse.startsWith('$.'))
-        parse = '$.' + parse
-    let ret = cheerio.jp(parse, html)
-    if (Array.isArray(ret) && Array.isArray(ret[0]) && ret.length === 1)
-        return ret[0] || []
-    return ret || []
-}
-
-const DOM_CHECK_ATTR = ['url', 'src', 'href', 'data-original', 'data-src'];
-const SELECT_REGEX = /:eq|:lt|:gt|#/g;
-const SELECT_REGEX_A = /:eq|:lt|:gt/g;
-
-function pdfh(html, parse, base_url) {
-    if (!parse || !parse.trim())
-        return ''
-    let option = undefined;
-    if (parse.indexOf('&&') > -1) {
-        let sp = parse.split('&&');
-        option = sp[sp.length - 1];
-        sp.splice(sp.length - 1);
-        if (sp.length > 1) {
-            for (const i in sp) {
-                if (!SELECT_REGEX.test(sp[i])) {
-                    sp[i] = sp[i] + ':eq(0)';
-                }
-            }
-        } else {
-            if (!SELECT_REGEX.test(sp[0])) {
-                sp[0] = sp[0] + ':eq(0)';
-            }
-        }
-        parse = sp.join(' ');
-    }
-    let result = '';
-    const $ = cheerio.load(html);
-    let ret = $(parse);
-    if (option) {
-        if (option === 'Text')
-            result = $(ret).text();
-        else if (option === 'Html')
-            result = $(ret).html();
-        else
-            result = $(ret).attr(option);
-        if (result && base_url && DOM_CHECK_ATTR.indexOf(option) > -1) {
-            let idx = result.indexOf('http');
-            if (idx > -1) {
-                result = result.substring(idx)
-            } else {
-                result = urljoin(base_url, result);
-            }
-        }
-    } else {
-        result = $(ret).toString();
-    }
-    return result;
-}
-
-function pdfa(html, parse) {
-    if (!parse || !parse.trim())
-        return []
-    if (parse.indexOf('&&') > -1) {
-        let sp = parse.split('&&');
-        for (const i in sp) {
-            if (!SELECT_REGEX_A.test(sp[i]) && i < sp.length - 1) {
-                sp[i] = sp[i] + ':eq(0)';
-            }
-        }
-        parse = sp.join(' ');
-    }
-    const $ = cheerio.load(html);
-    let ret = $(parse);
-    let result = [];
-    if (ret) {
-        ret.each(function (idx, ele) {
-            result.push($(ele).toString());
-        })
-    }
-    return result;
-}
-
-/**
- * 重写pd方法-增加自动urljoin(没法重写,改个名继续骗)
- * @param html
- * @param parse
- * @param uri
- * @returns {*}
- */
-function pD(html, parse, uri) {
-    return pdfh(html, parse, uri);
+    local.delete(RKEY, k);
 }
 
 /*** js自封装的方法 ***/
@@ -420,12 +550,19 @@ function require(url) {
  */
 function request(url, obj) {
     if (typeof (obj) === 'undefined' || !obj || obj === {}) {
-        obj = {
-            headers: {
+        if (!fetch_params || !fetch_params.headers) {
+            let headers = {
                 'User-Agent': MOBILE_UA,
-                'Referer': getHome(url),
+            };
+            if (rule.headers) {
+                Object.assign(headers, rule.headers);
             }
+            fetch_params.headers = headers;
         }
+        if (!fetch_params.headers.Referer) {
+            fetch_params.headers.Referer = getHome(url)
+        }
+        obj = fetch_params;
     } else {
         let headers = obj.headers || {};
         let keys = Object.keys(headers).map(it => it.toLowerCase());
@@ -452,8 +589,10 @@ function request(url, obj) {
         obj.buffer = 2;
         delete obj.toBase64
     }
+    console.log('request:' + url);
     let res = req(url, obj);
     let html = res.content || '';
+    // console.log(html);
     if (obj.withHeaders) {
         let htmlWithHeaders = res.headers;
         htmlWithHeaders.body = html;
@@ -463,6 +602,19 @@ function request(url, obj) {
     }
 }
 
+fetch = request;
+print = function (data) {
+    data = data || '';
+    if (typeof (data) !== 'string') {
+        try {
+            data = JSON.stringify(data);
+        } catch (e) {
+            console.log('print:' + e.message)
+        }
+    }
+    console.log(data);
+}
+log = console.log;
 /**
  * 检查宝塔验证并自动跳过获取正确源码
  * @param html 之前获取的html
@@ -519,6 +671,7 @@ function getHtml(url) {
  * @returns {string}
  */
 function homeParse(homeObj) {
+    fetch_params = JSON.parse(JSON.stringify(rule_fetch_params));
     let classes = [];
     if (homeObj.class_name && homeObj.class_url) {
         let names = homeObj.class_name.split('&');
@@ -540,7 +693,7 @@ function homeParse(homeObj) {
                 if (html) {
                     let list = pdfa(html, p[0]);
                     if (list && list.length > 0) {
-                        list.forEach(it => {
+                        list.forEach((it, idex) => {
                             try {
                                 let name = pdfh(it, p[1]);
                                 if (homeObj.cate_exclude && (new RegExp(homeObj.cate_exclude).test(name))) {
@@ -557,7 +710,7 @@ function homeParse(homeObj) {
                                     'type_name': name
                                 });
                             } catch (e) {
-                                console.log(e.message);
+                                console.log(`分类列表定位第${idex}个元素正常报错:${e.message}`);
                             }
                         });
                     }
@@ -568,6 +721,8 @@ function homeParse(homeObj) {
 
         }
     }
+    // 排除分类
+    classes = classes.filter(it => !homeObj.cate_exclude || !(new RegExp(homeObj.cate_exclude).test(it.type_name)));
     let resp = {
         'class': classes
     };
@@ -585,19 +740,21 @@ function homeParse(homeObj) {
  * @returns {string}
  */
 function homeVodParse(homeVodObj) {
+    fetch_params = JSON.parse(JSON.stringify(rule_fetch_params));
     let d = [];
     MY_URL = homeVodObj.homeUrl;
     // setItem('MY_URL',MY_URL);
     console.log(MY_URL);
     let p = homeVodObj.推荐;
-    if (!p) {
+    if (!p || typeof (p) !== 'string') {
         return '{}'
     }
-    if (typeof (p) === 'string' && p.trim().startsWith('js:')) {
+    p = p.trim();
+    if (p.startsWith('js:')) {
         const TYPE = 'home';
         var input = MY_URL;
         const HOST = rule.host;
-        eval(p.trim().replace('js:', ''));
+        eval(p.replace('js:', ''));
         d = VODS;
     } else {
         p = p.split(';');
@@ -606,30 +763,38 @@ function homeVodParse(homeVodObj) {
         } else if (homeVodObj.double && p.length < 6) {
             return '{}'
         }
+        let _ps = parseTags.getParse(p[0]);
+        _pdfa = _ps.pdfa;
+        _pdfh = _ps.pdfh;
+        _pd = _ps.pd;
+        let is_json = p[0].startsWith('json:');
+        p[0] = p[0].replace(/^(jsp:|json:|jq:)/, '');
+        // print(p[0]);
         let html = getHtml(MY_URL);
+        if (is_json) {
+            html = dealJson(html);
+        }
         try {
             console.log('double:' + homeVodObj.double);
             if (homeVodObj.double) {
-                p[0] = p[0].trim().startsWith('json:') ? p[0].replace('json:', '') : p[0];
-                // console.log(p[0]);
-                let items = pdfa(html, p[0]);
+                let items = _pdfa(html, p[0]);
                 // console.log(items.length);
                 for (let item of items) {
                     // console.log(p[1]);
-                    let items2 = pdfa(item, p[1]);
+                    let items2 = _pdfa(item, p[1]);
                     // console.log(items2.length);
                     for (let item2 of items2) {
                         try {
-                            let title = pdfh(item2, p[2]);
+                            let title = _pdfh(item2, p[2]);
                             let img = '';
                             try {
-                                img = pD(item2, p[3])
+                                img = _pd(item2, p[3])
                             } catch (e) {
                             }
-                            let desc = pdfh(item2, p[4]);
+                            let desc = _pdfh(item2, p[4]);
                             let links = [];
                             for (let p5 of p[5].split('+')) {
-                                let link = !homeVodObj.detailUrl ? pD(item2, p5, MY_URL) : pdfh(item2, p5);
+                                let link = !homeVodObj.detailUrl ? _pd(item2, p5, MY_URL) : _pdfh(item2, p5);
                                 links.push(link);
                             }
                             let vod = {
@@ -638,31 +803,33 @@ function homeVodParse(homeVodObj) {
                                 vod_remarks: desc,
                                 vod_id: links.join('$')
                             };
+                            // print(vod);
                             d.push(vod);
                         } catch (e) {
-
+                            console.log('首页列表处理发生错误:' + e.message);
                         }
 
                     }
 
 
                 }
+
+
             } else {
-                p[0] = p[0].trim().startsWith('json:') ? p[0].replace('json:', '') : p[0];
-                let items = pdfa(html, p[0]);
+                let items = _pdfa(html, p[0]);
                 for (let item of items) {
                     try {
-                        let title = pdfh(item, p[1]);
+                        let title = _pdfh(item, p[1]);
                         let img = '';
                         try {
-                            img = pD(item, p[2], MY_URL);
+                            img = _pd(item, p[2], MY_URL);
                         } catch (e) {
 
                         }
-                        let desc = pdfh(item, p[3]);
+                        let desc = _pdfh(item, p[3]);
                         let links = [];
                         for (let p5 of p[4].split('+')) {
-                            let link = !homeVodObj.detailUrl ? pD(item, p5, MY_URL) : pdfh(item, p5);
+                            let link = !homeVodObj.detailUrl ? _pd(item, p5, MY_URL) : _pdfh(item, p5);
                             links.push(link);
                         }
                         let vod = {
@@ -697,7 +864,11 @@ function homeVodParse(homeVodObj) {
  * @returns {string}
  */
 function categoryParse(cateObj) {
+    fetch_params = JSON.parse(JSON.stringify(rule_fetch_params));
     let p = cateObj.一级;
+    if (!p || typeof (p) !== 'string') {
+        return '{}'
+    }
     let d = [];
     // let url = cateObj.url.replaceAll('fyclass', cateObj.tid).replaceAll('fypage', cateObj.pg);
     let url = cateObj.url.replaceAll('fyclass', cateObj.tid);
@@ -712,13 +883,21 @@ function categoryParse(cateObj) {
         }
         // console.log('filter:'+cateObj.filter);
         let fl = cateObj.filter ? cateObj.extend : {};
-        url = drT.renderText(url, fl);
+        let new_url;
+        new_url = cheerio.jinja2(url, { fl: fl });
+        // if (/object Object/.test(new_url)) {
+        //     new_url = drT.renderText(url, fl);
+        // }
+        url = new_url;
     }
     if (/fypage/.test(url)) {
         if (url.includes('(') && url.includes(')')) {
             let url_rep = url.match(/.*?\((.*)\)/)[1];
+            // console.log(url_rep);
             let cnt_page = url_rep.replaceAll('fypage', cateObj.pg);
-            eval(`let cnt_pg=${cnt_page}`);
+            // console.log(cnt_page);
+            let cnt_pg = eval(cnt_page);
+            // console.log(cnt_pg);
             url = url.replaceAll(url_rep, cnt_pg).replaceAll('(', '').replaceAll(')', '');
         } else {
             url = url.replaceAll('fypage', cateObj.pg);
@@ -730,13 +909,14 @@ function categoryParse(cateObj) {
     MY_URL = url;
     // setItem('MY_URL',MY_URL);
     console.log(MY_URL);
-
-    if (typeof (p) === 'string' && p.trim().startsWith('js:')) {
-        const MY_CATE = cateObj.tid;
-        const MY_FL = cateObj.extend;
+    p = p.trim();
+    const MY_CATE = cateObj.tid;
+    if (p.startsWith('js:')) {
+        var MY_FL = cateObj.extend;
         const TYPE = 'cate';
         var input = MY_URL;
         const MY_PAGE = cateObj.pg;
+        var desc = '';
         eval(p.trim().replace('js:', ''));
         d = VODS;
     } else {
@@ -744,16 +924,30 @@ function categoryParse(cateObj) {
         if (p.length < 5) {
             return '{}'
         }
+        let _ps = parseTags.getParse(p[0]);
+        _pdfa = _ps.pdfa;
+        _pdfh = _ps.pdfh;
+        _pd = _ps.pd;
+        let is_json = p[0].startsWith('json:');
+        p[0] = p[0].replace(/^(jsp:|json:|jq:)/, '');
         try {
             let html = getHtml(MY_URL);
             if (html) {
-                let list = pdfa(html, p[0]);
+                if (is_json) {
+                    html = dealJson(html);
+                }
+                let list = _pdfa(html, p[0]);
                 list.forEach(it => {
+                    let links = p[4].split('+').map(p4 => {
+                        return !rule.detailUrl ? _pd(it, p4, MY_URL) : _pdfh(it, p4);
+                    });
+                    let link = links.join('$');
+                    let vod_id = rule.detailUrl ? MY_CATE + '$' + link : link;
                     d.push({
-                        'vod_id': pD(it, p[4], MY_URL),
-                        'vod_name': pdfh(it, p[1]),
-                        'vod_pic': pD(it, p[2], MY_URL),
-                        'vod_remarks': pdfh(it, p[3]),
+                        'vod_id': vod_id,
+                        'vod_name': _pdfh(it, p[1]).replace(/\n|\t/g, '').trim(),
+                        'vod_pic': _pd(it, p[2], MY_URL),
+                        'vod_remarks': _pdfh(it, p[3]).replace(/\n|\t/g, '').trim(),
                     });
                 });
             }
@@ -761,7 +955,7 @@ function categoryParse(cateObj) {
             console.log(e.message);
         }
     }
-
+    // print(d);
     return d.length < 1 ? '{}' : JSON.stringify({
         'page': parseInt(cateObj.pg),
         'pagecount': 999,
@@ -777,16 +971,21 @@ function categoryParse(cateObj) {
  * @returns {string}
  */
 function searchParse(searchObj) {
+    fetch_params = JSON.parse(JSON.stringify(rule_fetch_params));
     let d = [];
     if (!searchObj.searchUrl) {
         return '{}'
     }
     let p = searchObj.搜索 === '*' && rule.一级 ? rule.一级 : searchObj.搜索;
+    if (!p || typeof (p) !== 'string') {
+        return '{}'
+    }
+    p = p.trim();
     let url = searchObj.searchUrl.replaceAll('**', searchObj.wd).replaceAll('fypage', searchObj.pg);
     MY_URL = url;
     console.log(MY_URL);
     // setItem('MY_URL',MY_URL);
-    if (typeof (p) === 'string' && p.trim().startsWith('js:')) {
+    if (p.startsWith('js:')) {
         const TYPE = 'search';
         const MY_PAGE = searchObj.pg;
         const KEY = searchObj.wd;
@@ -799,6 +998,12 @@ function searchParse(searchObj) {
         if (p.length < 5) {
             return '{}'
         }
+        let _ps = parseTags.getParse(p[0]);
+        _pdfa = _ps.pdfa;
+        _pdfh = _ps.pdfh;
+        _pd = _ps.pd;
+        let is_json = p[0].startsWith('json:');
+        p[0] = p[0].replace(/^(jsp:|json:|jq:)/, '');
         try {
             let html = getHtml(MY_URL);
             if (html) {
@@ -817,16 +1022,24 @@ function searchParse(searchObj) {
                     console.log('搜索结果源码未包含关键字,疑似搜索失败,正为您打印结果源码');
                     console.log(html);
                 }
-                let list = pdfa(html, p[0]);
+                if (is_json) {
+                    html = dealJson(html);
+                }
+                let list = _pdfa(html, p[0]);
                 list.forEach(it => {
+                    let links = p[4].split('+').map(p4 => {
+                        return !rule.detailUrl ? _pd(it, p4, MY_URL) : _pdfh(it, p4)
+                    });
+
+                    let link = links.join('$');
                     let ob = {
-                        'vod_id': pD(it, p[4], MY_URL),
-                        'vod_name': pdfh(it, p[1]),
-                        'vod_pic': pD(it, p[2], MY_URL),
-                        'vod_remarks': pdfh(it, p[3]),
+                        'vod_id': link,
+                        'vod_name': _pdfh(it, p[1]).replace(/\n|\t/g, '').trim(),
+                        'vod_pic': _pd(it, p[2], MY_URL),
+                        'vod_remarks': _pdfh(it, p[3]).replace(/\n|\t/g, '').trim(),
                     };
                     if (p.length > 5 && p[5]) {
-                        ob.vod_content = pdfh(it, p[5]);
+                        ob.vod_content = _pdfh(it, p[5]);
                     }
                     d.push(ob);
                 });
@@ -835,14 +1048,15 @@ function searchParse(searchObj) {
         } catch (e) {
             return '{}'
         }
-        return JSON.stringify({
-            'page': parseInt(searchObj.pg),
-            'pagecount': 10,
-            'limit': 20,
-            'total': 100,
-            'list': d,
-        });
+
     }
+    return JSON.stringify({
+        'page': parseInt(searchObj.pg),
+        'pagecount': 10,
+        'limit': 20,
+        'total': 100,
+        'list': d,
+    });
 }
 
 /**
@@ -851,6 +1065,7 @@ function searchParse(searchObj) {
  * @returns {string}
  */
 function detailParse(detailObj) {
+    fetch_params = JSON.parse(JSON.stringify(rule_fetch_params));
     let vod = {
         vod_id: "id",
         vod_name: "片名",
@@ -882,24 +1097,41 @@ function detailParse(detailObj) {
         const TYPE = 'detail';
         var input = MY_URL;
         eval(p.trim().replace('js:', ''));
+        vod = VOD;
+        console.log(JSON.stringify(vod));
     } else if (p && typeof (p) === 'object') {
         if (!html) {
             html = getHtml(MY_URL);
         }
+        let _ps;
+        if (p.is_json) {
+            _ps = parseTags.json;
+            html = dealJson(html);
+        } else if (p.is_jsp) {
+            _ps = parseTags.jsp;
+        } else if (p.is_jq) {
+            _ps = parseTags.jq;
+        } else {
+            _ps = parseTags.jq;
+        }
+        _pdfa = _ps.pdfa;
+        _pdfh = _ps.pdfh;
+        _pd = _ps.pd;
         if (p.title) {
             let p1 = p.title.split(';');
-            vod.vod_name = pdfh(html, p1[0]).replaceAll('\n', ' ').trim();
-            let type_name = p1.length > 1 ? pdfh(html, p1[1]).replaceAll('\n', ' ').trim() : '';
+            vod.vod_name = _pdfh(html, p1[0]).replace(/\n|\t/g, '').trim();
+            let type_name = p1.length > 1 ? _pdfh(html, p1[1]).replace(/\n|\t/g, '').replace(/ /g, '').trim() : '';
             vod.type_name = type_name || vod.type_name;
         }
         if (p.desc) {
             try {
                 let p1 = p.desc.split(';');
-                vod.vod_remarks = pdfh(html, p1[0]).replaceAll('\n', ' ').trim();
-                vod.vod_year = p1.length > 1 ? pdfh(html, p1[1]).replaceAll('\n', ' ').trim() : '';
-                vod.vod_area = p1.length > 2 ? pdfh(html, p1[2]).replaceAll('\n', ' ').trim() : '';
-                vod.vod_actor = p1.length > 3 ? pdfh(html, p1[3]).replaceAll('\n', ' ').trim() : '';
-                vod.vod_director = p1.length > 4 ? pdfh(html, p1[4]).replaceAll('\n', ' ').trim() : '';
+                vod.vod_remarks = _pdfh(html, p1[0]).replace(/\n|\t/g, '').trim();
+                vod.vod_year = p1.length > 1 ? _pdfh(html, p1[1]).replace(/\n|\t/g, '').trim() : '';
+                vod.vod_area = p1.length > 2 ? _pdfh(html, p1[2]).replace(/\n|\t/g, '').trim() : '';
+                // vod.vod_actor = p1.length > 3 ? _pdfh(html, p1[3]).replaceAll('\n', ' ').trim():'';
+                vod.vod_actor = p1.length > 3 ? _pdfh(html, p1[3]).replace(/\n|\t/g, '').trim() : '';
+                vod.vod_director = p1.length > 4 ? _pdfh(html, p1[4]).replace(/\n|\t/g, '').trim() : '';
             }
             catch (e) {
 
@@ -908,14 +1140,14 @@ function detailParse(detailObj) {
         if (p.content) {
             try {
                 let p1 = p.content.split(';');
-                vod.vod_content = pdfh(html, p1[0]).replaceAll('\n', ' ').trim();
+                vod.vod_content = _pdfh(html, p1[0]).replace(/\n|\t/g, '').trim();
             }
             catch (e) { }
         }
         if (p.img) {
             try {
                 let p1 = p.img.split(';');
-                vod.vod_pic = pD(html, p1[0], MY_URL);
+                vod.vod_pic = _pd(html, p1[0], MY_URL);
             }
             catch (e) { }
         }
@@ -930,11 +1162,11 @@ function detailParse(detailObj) {
         if (p.tabs) {
             let p_tab = p.tabs.split(';')[0];
             console.log(p_tab);
-            let vHeader = pdfa(html, p_tab);
+            let vHeader = _pdfa(html, p_tab);
 
             console.log(vHeader.length);
             for (let v of vHeader) {
-                let v_title = pdfh(v, 'body&&Text');
+                let v_title = _pdfh(v, 'body&&Text');
                 console.log(v_title);
                 if (tab_exclude && (new RegExp(tab_exclude)).test(v_title)) {
                     continue;
@@ -960,16 +1192,19 @@ function detailParse(detailObj) {
                 // console.log(html);
                 let vodList = [];
                 try {
-                    vodList = pdfa(html, p1);
+                    vodList = _pdfa(html, p1);
                     console.log('len(vodList):' + vodList.length);
                 } catch (e) {
                     // console.log(e.message);
                 }
                 let new_vod_list = [];
-                let tabName = tab_ext ? pdfh(html, tab_ext) : tab_name;
+                let tabName = tab_ext ? _pdfh(html, tab_ext) : tab_name;
                 console.log(tabName);
+                // console.log('cheerio解析Text');
                 vodList.forEach(it => {
-                    new_vod_list.push(pdfh(it, 'body&&Text') + '$' + pD(it, 'a&&href', MY_URL));
+                    // 请注意,这里要固定pdfh解析body&&Text,不需要下划线,没写错
+                    // new_vod_list.push(pdfh(it,'body&&Text')+'$'+_pd(it,'a&&href',MY_URL));
+                    new_vod_list.push(cheerio.load(it).text() + '$' + _pd(it, 'a&&href', MY_URL));
                 });
                 let vlist = new_vod_list.join('#');
                 vod_tab_list.push(vlist);
@@ -977,7 +1212,7 @@ function detailParse(detailObj) {
         }
         vod.vod_play_url = vod_tab_list.join(vod_play_url);
     }
-    // console.log(JSON.stringify(vod));
+    // print(vod);
     return JSON.stringify({
         list: [vod]
     })
@@ -989,24 +1224,34 @@ function detailParse(detailObj) {
  * @returns {string}
  */
 function playParse(playObj) {
+    fetch_params = JSON.parse(JSON.stringify(rule_fetch_params));
     MY_URL = playObj.url;
-    var input = MY_URL;
+    if (!/http/.test(MY_URL)) {
+        try {
+            MY_URL = base64Decode(MY_URL);
+        } catch (e) { }
+    }
+    MY_URL = decodeURIComponent(MY_URL);
+    var input = MY_URL;//注入给免嗅js
     let common_play = {
         parse: 1,
-        url: MY_URL
+        url: input
     };
     let lazy_play;
     if (!rule.play_parse || !rule.lazy) {
         lazy_play = common_play;
     } else if (rule.play_parse && rule.lazy && typeof (rule.lazy) === 'string') {
         try {
-            eval(rule.lazy.replace('js:').trim());
+            let lazy_code = rule.lazy.replace('js:', '').trim();
+            print('开始执行js免嗅=>' + lazy_code);
+            eval(lazy_code);
             lazy_play = typeof (input) === 'object' ? input : {
                 parse: 1,
                 jx: 1,
                 url: input
             };
         } catch (e) {
+            print('js免嗅错误:' + e.message);
             lazy_play = common_play;
         }
     } else {
@@ -1021,8 +1266,61 @@ function playParse(playObj) {
  * @param ext
  */
 function init(ext) {
-    console.log("init");
+    console.log('init');
     try {
+        if (typeof ext == 'object') {
+            rule = ext;
+            if (rule.template) {
+                rule = Object.assign(muban[rule.template], rule);
+            }
+        } else if (typeof ext == 'string') {
+            if (ext.startsWith('http')) {
+                let js = request(ext, { 'method': 'GET' });
+                if (js) {
+                    eval(js.replace('var rule', 'rule'));
+                }
+            }
+        } else {
+            eval(ext.replace('var rule', 'rule'));
+        }
+        /** 处理一下 rule规则关键字段没传递的情况 **/
+        let rule_cate_excludes = (rule.cate_exclude || '').split('|').filter(it => it.trim());
+        let rule_tab_excludes = (rule.tab_exclude || '').split('|').filter(it => it.trim());
+        rule_cate_excludes = rule_cate_excludes.concat(CATE_EXCLUDE.split('|').filter(it => it.trim()));
+        rule_tab_excludes = rule_tab_excludes.concat(TAB_EXCLUDE.split('|').filter(it => it.trim()));
+
+        rule.cate_exclude = rule_cate_excludes.join('|');
+        rule.tab_exclude = rule_tab_excludes.join('|');
+        rule.host = (rule.host || '').rstrip('/');
+        rule.url = rule.url || '';
+        rule.double = rule.double || false;
+        rule.homeUrl = rule.homeUrl || '';
+        rule.detailUrl = rule.detailUrl || '';
+        rule.searchUrl = rule.searchUrl || '';
+        rule.homeUrl = rule.host && rule.homeUrl ? urljoin(rule.host, rule.homeUrl) : (rule.homeUrl || rule.host);
+        rule.detailUrl = rule.host && rule.detailUrl ? urljoin(rule.host, rule.detailUrl) : rule.detailUrl;
+        rule.timeout = rule.timeout || 5000;
+        rule.encoding = rule.编码 || rule.encoding || 'utf-8';
+        if (rule.headers && typeof (rule.headers) === 'object') {
+            try {
+                let header_keys = Object.keys(rule.headers);
+                for (let k of header_keys) {
+                    if (k.toLowerCase() === 'user-agent') {
+                        let v = rule.headers[k];
+                        console.log(v);
+                        if (['MOBILE_UA', 'PC_UA', 'UC_UA', 'IOS_UA', 'UA'].includes(v)) {
+                            rule.headers[k] = eval(v);
+                        }
+                    }
+                }
+            } catch (e) {
+                console.log('处理headers发生错误:' + e.message);
+            }
+        }
+        // print(rule.headers);
+        rule_fetch_params = { 'headers': rule.headers || false, 'timeout': rule.timeout, 'encoding': rule.encoding };
+        oheaders = rule.headers || {};
+        RKEY = typeof (key) !== 'undefined' && key ? key : 'drpy_' + (rule.title || rule.host);
         init_test();
     } catch (e) {
         console.log('init_test发生错误:' + e.message);
@@ -1053,13 +1351,11 @@ function home(filter) {
  * @returns {string}
  */
 function homeVod(params) {
-    let homeUrl = rule.host && rule.homeUrl ? urljoin(rule.host, rule.homeUrl) : (rule.homeUrl || rule.host);
-    let detailUrl = rule.host && rule.detailUrl ? urljoin(rule.host, rule.detailUrl) : rule.detailUrl;
     let homeVodObj = {
         推荐: rule.推荐,
         double: rule.double,
-        homeUrl: homeUrl,
-        detailUrl: detailUrl
+        homeUrl: rule.homeUrl,
+        detailUrl: rule.detailUrl
     };
     return homeVodParse(homeVodObj)
     // return "{}";
@@ -1100,8 +1396,6 @@ function detail(vod_url) {
     }
     let detailUrl = vod_url;
     let url;
-    rule.homeUrl = urljoin(rule.host, rule.homeUrl);
-    rule.detailUrl = urljoin(rule.host, rule.detailUrl);
     if (!detailUrl.startsWith('http') && !detailUrl.includes('/')) {
         url = rule.detailUrl.replaceAll('fyid', detailUrl).replaceAll('fyclass', fyclass);
     } else if (detailUrl.includes('/')) {
@@ -1165,6 +1459,9 @@ function DRPY() {//导出函数
         search: search,
     }
 }
+
+
+let pd = pD;
 
 // 导出函数对象
 __JS_SPIDER__ = {
