@@ -12,7 +12,7 @@ function init_test() {
     // clearItem(RULE_CK);
     // console.log(JSON.stringify(rule));
     // console.log(request('https://www.baidu.com',{withHeaders:true}));
-    console.log(request('https://www.baidu.com/favicon.ico', { toBase64: true }));
+    // console.log(request('https://www.baidu.com/favicon.ico', { toBase64: true }));
     // require('http://192.168.10.99:5705/txt/pluto/drT.js');
     // console.log(typeof(drT));
     // console.log(drT.renderText('{{fl.cate}},hi, {{fl}}哈哈.{{fl}}',{sort: 1,cate:'movie'},'fl'));
