@@ -1043,16 +1043,22 @@ function detailParse(detailObj) {
         if (!html) {
             html = getHtml(MY_URL);
         }
+        let _impJQP = true;
         let _ps;
         if (p.is_json) {
             _ps = parseTags.json;
             html = dealJson(html);
+            _impJQP = false;
         } else if (p.is_jsp) {
             _ps = parseTags.jsp;
         } else if (p.is_jq) {
             _ps = parseTags.jq;
         } else {
             _ps = parseTags.jq;
+        }
+        if (_impJQP) {
+            let c$ = cheerio.load(html);
+            html = { rr: c$, ele: c$('html')[0] }
         }
         _pdfa = _ps.pdfa;
         _pdfh = _ps.pdfh;
@@ -1096,6 +1102,10 @@ function detailParse(detailObj) {
         let playFrom = [];
         if (p.重定向 && p.重定向.startsWith('js:')) {
             html = eval(p.重定向.replace('js:', ''));
+            if (_impJQP) {
+                let c$ = cheerio.load(html);
+                html = { rr: c$, ele: c$('html')[0] }
+            }
         }
 
         // console.log(2);
